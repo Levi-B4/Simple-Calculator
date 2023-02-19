@@ -28,7 +28,7 @@ namespace KnowledgeCheck1_Calculator
 
             var input = Console.ReadLine();
 
-            if (int.TryParse(input, out chosenOperation) && chosenOperation >= 1 && chosenOperation <= 4)
+            if (testIfInt(input) && int.Parse(input) <= 4)
             {
                 //select numbers to operate on
                 Console.WriteLine($"Enter 2 integers to {mathOperations[chosenOperation - 1]}");
@@ -36,7 +36,7 @@ namespace KnowledgeCheck1_Calculator
                 var num1 = Console.ReadLine();
                 var num2 = Console.ReadLine();
 
-                if (int.TryParse(num1, out int subNum1) && int.TryParse(num2, out int subNum2))
+                if (testIfInt(num1, num2))
                 {
                     //complete operation
                     int answer;
@@ -79,6 +79,20 @@ namespace KnowledgeCheck1_Calculator
                 Console.WriteLine("Unknown input.\n" +
                             "Please try again.");
             }
+        }
+
+        private static bool testIfInt(string num)
+        {
+            bool isInteger = int.TryParse(num, out int value);
+
+            return isInteger;
+        }
+
+        private static bool testIfInt(string num1, string num2)
+        {
+            bool areIntegers = int.TryParse(num1, out int value) && int.TryParse(num2, out value);
+
+            return areIntegers;
         }
     }
 }
